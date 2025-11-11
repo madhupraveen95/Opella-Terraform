@@ -2,7 +2,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "TF-Prod-rg" {
   name     = "rg-prod-eastus"
   location = "eastus"
 }
@@ -47,11 +47,11 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
-  admin_username      = "azureuser"
+  admin_username      = "produser"
   network_interface_ids = [
     azurerm_network_interface.nic.id
   ]
-  admin_password = "P@ssword123!"
+  admin_password = "Opell@2025!"
 }
 
 resource "random_string" "suffix" {
