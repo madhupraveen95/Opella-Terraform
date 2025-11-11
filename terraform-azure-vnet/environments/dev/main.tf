@@ -51,7 +51,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [
     azurerm_network_interface.nic.id
   ]
-  admin_password = "P@ssword123!"
+  admin_password = "Opell@123!"
 }
 
 resource "random_string" "suffix" {
