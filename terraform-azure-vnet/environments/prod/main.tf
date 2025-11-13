@@ -24,7 +24,7 @@ module "vnet" {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "prodstorage${random_string.suffix.result}"
+  name                     = tf-prodstorage
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -52,10 +52,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     azurerm_network_interface.nic.id
   ]
   admin_password = "Opell@2025!"
-}
-
-resource "random_string" "suffix" {
-  length  = 6
-  upper   = false
-  special = false
 }
