@@ -2,8 +2,8 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "rg-dev-eastus"
+resource "azurerm_resource_group" "TF-Dev-RG" {
+  name     = "dev-eastus"
   location = "eastus"
 }
 
@@ -24,7 +24,7 @@ module "vnet" {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "devstorage${random_string.suffix.result}"
+  name                     = tf-devstorage
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -47,15 +47,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
-  admin_username      = "azureuser"
+  admin_username      = "OpellaAdmin"
   network_interface_ids = [
     azurerm_network_interface.nic.id
   ]
-  admin_password = "P@ssword123!"
-}
-
-resource "random_string" "suffix" {
-  length  = 6
-  upper   = false
-  special = false
+  admin_password = "Opell@123!"
 }
